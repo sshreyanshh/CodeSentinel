@@ -1,10 +1,12 @@
 [project]
-name = "backend"
+name = "codesentinel-backend"
 version = "0.1.0"
-description = "Add your description here"
+description = "CodeSentinel: Theory of Computation based source code analyzer"
 readme = "README.md"
 authors = [
-    { name = "sshreyanshh", email = "shreyansh.backup7@gmail.com" }
+    { name = "Shreyansh Srivastava", email = "shreyansh.backup7@gmail.com" },
+    { name = "Kaustubh Mishra", email = "kkaustubhmedia@gmail.com" },
+    { name = "Abhigya Narayan Awasthi", email = "abhigyaawasthi2@gmail.com" },
 ]
 requires-python = ">=3.14"
 dependencies = [
@@ -13,9 +15,22 @@ dependencies = [
     "uvicorn>=0.54.0",
 ]
 
-[project.scripts]
-backend = "backend:main"
+[dependency-groups]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "httpx",
+    "ruff",
+    "hypothesis",
+]
 
-[build-system]
-requires = ["uv_build>=0.12.3,<0.13.0"]
-build-backend = "uv_build"
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
