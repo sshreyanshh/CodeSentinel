@@ -1,3 +1,20 @@
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--parchment-page);
+  --color-foreground: var(--parchment-foreground);
+  --color-card: var(--parchment-card);
+  --color-card-foreground: var(--parchment-foreground);
+  --color-border: var(--parchment-border);
+  --color-primary: var(--parchment-primary);
+  --color-destructive: var(--parchment-destructive);
+  --color-accent: var(--parchment-accent);
+  --color-accent-foreground: var(--parchment-accent-foreground);
+  --color-muted-foreground: var(--parchment-muted-foreground);
+  --color-muted: var(--parchment-muted);
+}
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -8,6 +25,17 @@
   --accent-bg: rgba(170, 59, 255, 0.1);
   --accent-border: rgba(170, 59, 255, 0.5);
   --social-bg: rgba(244, 243, 236, 0.5);
+  --color-radius: 0.75rem;
+  --parchment-page: #eee9dc;
+  --parchment-card: #f4f0e2;
+  --parchment-foreground: #3d382e;
+  --parchment-border: #d9d0bc;
+  --parchment-primary: #596b4d;
+  --parchment-destructive: #9c4f3f;
+  --parchment-accent: #c2a15b;
+  --parchment-accent-foreground: #473c25;
+  --parchment-muted-foreground: #777164;
+  --parchment-muted: #e7dfce;
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
@@ -17,7 +45,7 @@
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
+  color-scheme: light;
   color: var(--text);
   background: var(--bg);
   font-synthesis: none;
@@ -30,20 +58,29 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+:root.dark {
+  color-scheme: dark;
+  --text: #9ca3af;
+  --text-h: #f3f4f6;
+  --bg: #16171d;
+  --border: #2e303a;
+  --code-bg: #1f2028;
+  --accent: #c084fc;
+  --accent-bg: rgba(192, 132, 252, 0.15);
+  --accent-border: rgba(192, 132, 252, 0.5);
+  --social-bg: rgba(47, 48, 58, 0.5);
+  --parchment-card: #302f27;
+  --parchment-page: #25231e;
+  --parchment-foreground: #eee8d8;
+  --parchment-border: #555143;
+  --parchment-primary: #b7c49c;
+  --parchment-destructive: #e29b86;
+  --parchment-accent: #8e7847;
+  --parchment-accent-foreground: #f3ead1;
+  --parchment-muted-foreground: #b8b09c;
+  --parchment-muted: #49463c;
+  --shadow:
+    rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
 
   #social .button-icon {
     filter: invert(1) brightness(2);
@@ -51,19 +88,30 @@
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  text-align: left;
   min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+  display: block;
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+}
+
+body,
+#root {
+  @apply bg-background text-foreground transition-colors duration-200 ease-in-out;
+}
+
+button,
+select,
+[role='tab'],
+[class*='bg-card'],
+[class*='border'] {
+  @apply transition-colors duration-200 ease-in-out;
 }
 
 h1,

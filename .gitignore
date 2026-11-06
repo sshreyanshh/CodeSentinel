@@ -15,6 +15,9 @@ downloads/
 eggs/
 .eggs/
 lib/
+!frontend/src/lib/
+!frontend/src/lib/positions.ts
+!frontend/src/lib/positions.test.ts
 lib64/
 parts/
 sdist/

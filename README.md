@@ -12,7 +12,7 @@ Requirements: Git, [uv](https://docs.astral.sh/uv/), Node.js 22 + npm. Python 3.
 git clone https://github.com/sshreyanshh/CodeSentinel.git
 cd CodeSentinel
 ```
-
+a
 ### Backend
 
 ```bash
